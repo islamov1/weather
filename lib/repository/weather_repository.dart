@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:weather/model/forcast_model.dart';
 import 'package:weather/model/weather_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,4 +14,18 @@ class WeatherRepository {
       return null;
     }
   }
+
+
+
+  Future<ForcastModel?> getForcast(String q) async{
+    var response = await http.get (Uri.parse('https://api.openweathermap.org/data/2.5/forecast?q=$q&appid=b5df4031a40805aa77165664bd27c05e&units=metric'));
+    print('---forcast${response.body}');
+    if (response.statusCode==200) {
+      return ForcastModel.fromJson(jsonDecode(response.body));
+    } else {
+      return null;
+    }
+  }
 }
+
+

@@ -177,8 +177,8 @@ class Main {
 }
 
 class Wind {
-  int? speed;
-  int? deg;
+  double? speed;
+  double? deg;
 
   Wind({this.speed, this.deg});
 
